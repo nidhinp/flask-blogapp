@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Recent Posts</h2>
+{% for entry in entries %}
+<p><h3>{{entry[0]}}</h3></p><br>
+<p>{{entry[1]}}</p><br>
+<p>{{entry[2]}} - {{entry[3]}}</p><br>
+<p><h4>comments</h4>
+{% for comment in comments %}
+{% if entry[0] == comment[0] %}
+<p><strong>{{comment[1]}}</strong>: {{comment[2]}}</p>
+{% endif %}
+{% endfor %}
+<form action="{{url_for('comments')}}" method="post">
+    <dl>
+        <dt>name
+        <dd><input type="text" name="name">
+        <dt>comment
+        <dd><textarea name="comment" rows="3" cols="30"></textarea>
+        <dd><input type="hidden" name="title" value="{{entry[0]}}">
+        <dd><input type="submit" value="post">
+    </dl>
+</form>
+<hr>
+{% endfor %}
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>share your ideas</h2>
+<form action="{{url_for('newpost')}}" method="post">
+    <dl>
+        <dt>Title
+        <dd><input type="text" name="title">
+        <dt>Text
+        <dd><textarea name="body" rows="10" cols="40"></textarea>
+        <dd><input type="submit" value="Post">
+    </dl>
+</form>
+{% endblock %}

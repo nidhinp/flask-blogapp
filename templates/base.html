@@ -1,0 +1,18 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{title}}</title>
+        {% else %}
+        <title>miniblog</title>
+        {% endif %}
+    </head>
+    <body>
+        <div align="right">
+            <a href="/posts">My Posts</a>
+            |<a href="/newpost">New Posts</a>
+            |<a href="/login">Sign Out</a>
+        </div>
+        <hr>
+        {% block content %} {% endblock %}
+    </body>
+</html>
