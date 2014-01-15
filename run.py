@@ -18,7 +18,7 @@ PASSWORD = 'password'
 
 @app.route('/comments', methods = ['GET', 'POST'])
 def comments():
-    conn = psycopg2.connect(database = url.path[1:], user = url.username, password = url.password, host = url.hostname, port = url.port)
+    conn = psycopg2.connect(database="d600bqomrbg8er", user = "mxwgzzfpkciuuh", password = "tVKQ_Quhpk1m2yejMakND1MEAn", host = "ec2-184-73-194-196.compute-1.amazonaws.com" , port = "5432")
     cur = conn.cursor()
     cur.execute("INSERT INTO newcomments(title, name, comment) VALUES(%s, %s, %s)",[request.form['title'], request.form['name'], request.form['comment']])
     conn.commit()
@@ -31,7 +31,7 @@ def comments():
 
 @app.route('/posts', methods = ['GET', 'POST'])
 def posts():
-    conn = psycopg2.connect(database = url.path[1:], user = url.username, password = url.password, host = url.hostname, port = url.port)
+    conn = psycopg2.connect(database="d600bqomrbg8er", user = "mxwgzzfpkciuuh", password = "tVKQ_Quhpk1m2yejMakND1MEAn", host = "ec2-184-73-194-196.compute-1.amazonaws.com" , port = "5432")
     cur = conn.cursor()
     cur.execute("SELECT title, body, day, time FROM newblogposts ORDER BY id DESC")
     entries = cur.fetchall()
@@ -57,7 +57,7 @@ def login():
 @app.route('/newpost', methods = ['GET', 'POST'])
 def newpost():
     if request.method == 'POST':
-        conn = psycopg2.connect(database = url.path[1:], user = url.username, password = url.password, host = url.hostname, port = url.port)
+        conn = psycopg2.connect(database="d600bqomrbg8er", user = "mxwgzzfpkciuuh", password = "tVKQ_Quhpk1m2yejMakND1MEAn", host = "ec2-184-73-194-196.compute-1.amazonaws.com" , port = "5432")
         cur = conn.cursor()
         cur.execute("INSERT INTO newblogposts (title, body, day, time) VALUES (%s,%s,%s,%s)", [request.form['title'], request.form['body'], strftime("%d %b %Y ", gmtime()), strftime("%H:%M:%S ", gmtime())])
         conn.commit()

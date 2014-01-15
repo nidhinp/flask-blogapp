@@ -6,10 +6,10 @@ import os
 con = None
 
 try:
-    urlparse.uses_netloc.append("postgres")
-    url = urlparse.urlparse(os.environ["DATABASE_URL"])
+    #urlparse.uses_netloc.append("postgres")
+    #url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
-    con = psycopg2.connect(database = url.path[1:], user = url.username, password = url.password, host = url.hostname, port = url.port)
+    con = psycopg2.connect(database="d600bqomrbg8er", user = "mxwgzzfpkciuuh", password = "tVKQ_Quhpk1m2yejMakND1MEAn", host = "ec2-184-73-194-196.compute-1.amazonaws.com" , port = "5432")
    
     cur = con.cursor()
     cur.execute("CREATE TABLE newcomments(id serial, title TEXT, name TEXT, comment TEXT)")
