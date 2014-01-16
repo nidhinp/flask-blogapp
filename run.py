@@ -1,4 +1,3 @@
-from flask.ext.sqlalchemy import SQLAlchemy
 from flask import *
 from time import *
 import psycopg2
@@ -23,7 +22,7 @@ def comments():
     cur.execute("SELECT title, name, comment FROM newcomments ORDER BY id DESC")
     comments = cur.fetchall()
     conn.close()
-    return render_template('posts.html', title = 'posts', entries = entries, comments = comments)
+    return render_template('posts.html', title = 'Recent', entries = entries, comments = comments)
 
 @app.route('/posts', methods = ['GET', 'POST'])
 def posts():
@@ -34,10 +33,14 @@ def posts():
     cur.execute("SELECT title, name, comment FROM newcomments ORDER BY id DESC")
     comments = cur.fetchall()
     conn.close()
-    return render_template('posts.html', title = 'posts', entries = entries, comments = comments)
+    return render_template('posts.html', title = 'Recent', entries = entries, comments = comments)
 
 
 @app.route('/')
+@app.route('/home')
+def home():
+    return render_template('home.html', title = 'Home')
+
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     error = None
@@ -47,7 +50,7 @@ def login():
         if request.form['password'] != PASSWORD:
             error = 'Invalid Password'
         else:
-            return redirect(url_for('posts'))
+            return redirect(url_for('newpost'))
     return render_template('login.html', error = error)
 
 @app.route('/newpost', methods = ['GET', 'POST'])
